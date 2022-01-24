@@ -12,6 +12,7 @@ export enum MethodNames {
   TransferKeepAlive = 'transferKeepAlive',
   Unbond = 'unbond',
   Anonymous = 'anonymous',
+  Batch = 'batch',
 }
 
 /**
@@ -111,6 +112,18 @@ export interface AddAnonymousProxyArgs {
 /**
  * Transaction method specific args
  */
+export type BatchCallObject = {
+  callIndex?: string;
+  args: any;
+};
+export type BatchCall = BatchCallObject | string;
+export interface BatchArgs {
+  calls: BatchCall[];
+}
+
+/**
+ * Transaction method specific args
+ */
 export type ProxyCallArgs = {
   callIndex: string;
   args: TransferArgs;
@@ -128,7 +141,7 @@ export interface ProxyArgs {
  * Decoded TxMethod from a transaction hex
  */
 export interface TxMethod {
-  args: TransferArgs | StakeArgs | AddProxyArgs | ProxyArgs | UnstakeArgs | AddAnonymousProxyArgs;
+  args: TransferArgs | StakeArgs | AddProxyArgs | ProxyArgs | UnstakeArgs | AddAnonymousProxyArgs | BatchArgs;
   name: MethodNames;
   pallet: string;
 }
