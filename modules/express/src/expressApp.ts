@@ -103,7 +103,7 @@ function createHttpServer(app: express.Application): http.Server {
  */
 export function startup(config: Config, baseUri: string): () => void {
   return function () {
-    const { env, ipc, customRootUri, customBitcoinNetwork } = config;
+    const { env, ipc, customRootUri, customBitcoinNetwork, signerMode } = config;
     /* eslint-disable no-console */
     console.log('BitGo-Express running');
     console.log(`Environment: ${env}`);
@@ -117,6 +117,9 @@ export function startup(config: Config, baseUri: string): () => void {
     }
     if (customBitcoinNetwork) {
       console.log(`Custom bitcoin network: ${customBitcoinNetwork}`);
+    }
+    if (signerMode) {
+      console.log(`External signer mode: ${signerMode}`);
     }
     /* eslint-enable no-console */
   };

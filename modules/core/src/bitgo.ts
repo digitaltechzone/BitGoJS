@@ -74,6 +74,9 @@ export interface BitGoOptions {
   etherscanApiToken?: string;
   hmacVerification?: boolean;
   authVersion?: 2 | 3;
+  externalSignerUrl?: string;
+  signerMode?: boolean;
+  signerFileSystemPath?: string;
 }
 
 export interface User {
@@ -357,6 +360,9 @@ export class BitGo {
   private _pendingApprovals?: any;
   private _hmacVerification = true;
   private readonly _authVersion: Exclude<BitGoOptions['authVersion'], undefined> = 2;
+  private readonly _externalSignerUrl?: string;
+  private readonly _signerMode?: boolean;
+  private readonly _signerFileSystemPath?: string;
   /**
    * Constructor for BitGo Object
    */
@@ -405,6 +411,18 @@ export class BitGo {
       }
     } else {
       env = params.env || process.env.BITGO_ENV as EnvironmentName;
+    }
+
+    if (params.externalSignerUrl !== undefined) {
+      this._externalSignerUrl = params.externalSignerUrl;
+    }
+
+    if (params.signerMode !== undefined) {
+      this._signerMode = params.signerMode;
+    }
+
+    if (params.signerFileSystemPath !== undefined) {
+      this._signerFileSystemPath = params.signerFileSystemPath;
     }
 
     if (params.authVersion !== undefined) {

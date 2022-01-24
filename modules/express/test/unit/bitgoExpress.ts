@@ -203,6 +203,25 @@ describe('Bitgo Express', function () {
       logStub.restore();
     });
 
+    it('should output external mode upon server startup', () => {
+      const logStub = sinon.stub(console, 'log');
+
+      const args: any = {
+        env: 'test',
+        signerMode: 'signerMode',
+      };
+
+      startup(args, 'base')();
+
+      logStub.should.have.callCount(4);
+      logStub.should.have.been.calledWith('BitGo-Express running');
+      logStub.should.have.been.calledWith(`Environment: ${args.env}`);
+      logStub.should.have.been.calledWith('Base URI: base');
+      logStub.should.have.been.calledWith(`External signer mode: ${args.signerMode}`);
+
+      logStub.restore();
+    });
+
     it('should create http base URIs', () => {
       const args: any = {
         bind: '1',
