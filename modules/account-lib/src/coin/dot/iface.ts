@@ -12,6 +12,7 @@ export enum MethodNames {
   TransferKeepAlive = 'transferKeepAlive',
   Unbond = 'unbond',
   Anonymous = 'anonymous',
+  Chill = 'chill',
 }
 
 /**
