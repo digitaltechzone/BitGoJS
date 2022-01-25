@@ -11,10 +11,10 @@ describe('Dot Unstake Builder', () => {
 
   const sender = DotResources.accounts.account1;
   const materialData = Networks.test.dot;
+  const config = buildTestConfig();
+  const material = utils.getMaterial(config);
 
   beforeEach(() => {
-    const config = buildTestConfig();
-    const material = utils.getMaterial(config);
     builder = new UnstakeBuilder(config).material(material);
   });
 

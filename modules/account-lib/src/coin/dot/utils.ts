@@ -201,9 +201,16 @@ export class Utils implements BaseUtils {
 
   getMaterial(coinConfig: Readonly<CoinConfig>): Material {
     const networkConfig = coinConfig.network as DotNetwork;
-    const { specName, specVersion, chainName, metadataRpc, txVersion, genesisHash } = networkConfig;
+    const { specName, specVersion, chainName, txVersion, genesisHash } = networkConfig;
 
-    return { specName, specVersion, chainName, metadata: metadataRpc, txVersion, genesisHash } as Material;
+    return {
+      specName,
+      specVersion,
+      chainName,
+      metadata: networkConfig.metadataRpc,
+      txVersion,
+      genesisHash,
+    } as Material;
   }
 
   isSigningPayload(payload: DecodedSigningPayload | DecodedSignedTx): payload is DecodedSigningPayload {

@@ -3,19 +3,17 @@ import sinon, { assert } from 'sinon';
 import { AddressInitializationBuilder } from '../../../../../src/coin/dot';
 import * as DotResources from '../../../../resources/dot';
 import { buildTestConfig } from './base';
-import { Material, ProxyType } from '../../../../../src/coin/dot/iface';
 import utils from '../../../../../src/coin/dot/utils';
 
 describe('Dot Address Initialization Builder', () => {
   let builder: AddressInitializationBuilder;
-  let materialData: Material;
 
   const sender = DotResources.accounts.account1;
   const receiver = DotResources.accounts.account3;
+  const config = buildTestConfig();
+  const materialData = utils.getMaterial(config);
 
   beforeEach(() => {
-    const config = buildTestConfig();
-    materialData = utils.getMaterial(config);
     builder = new AddressInitializationBuilder(config).material(materialData);
   });
 

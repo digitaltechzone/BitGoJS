@@ -4,18 +4,16 @@ import { StakingBuilder } from '../../../../../src/coin/dot';
 import utils from '../../../../../src/coin/dot/utils';
 import * as DotResources from '../../../../resources/dot';
 import { buildTestConfig } from './base';
-import { Material } from '../../../../../src/coin/dot/iface';
 
 describe('Dot Stake Builder', () => {
   let builder: StakingBuilder;
 
-  let materialData: Material;
   const sender = DotResources.accounts.account1;
   const receiver = DotResources.accounts.account2;
+  const config = buildTestConfig();
+  const materialData = utils.getMaterial(config);
 
   beforeEach(() => {
-    const config = buildTestConfig();
-    materialData = utils.getMaterial(config);
     builder = new StakingBuilder(config).material(materialData);
   });
   describe('setter validation', () => {

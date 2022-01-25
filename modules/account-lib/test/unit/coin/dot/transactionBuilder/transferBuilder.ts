@@ -13,12 +13,11 @@ describe('Dot Transfer Builder', () => {
   const proxySender = DotResources.accounts.account3;
   const sender = DotResources.accounts.account1;
   const receiver = DotResources.accounts.account2;
-
   const materialData = Networks.test.dot;
+  const config = buildTestConfig();
+  const material = utils.getMaterial(config);
 
   beforeEach(() => {
-    const config = buildTestConfig();
-    const material = utils.getMaterial(config);
     builder = new TransferBuilder(config).material(material);
   });
   describe('setter validation', () => {
